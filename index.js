@@ -34,11 +34,6 @@ function promptQuestions() {
     },
     {
       type: "input",
-      message: "Please enter your project table of contents",
-      name: "ProjectContents",
-    },
-    {
-      type: "input",
       message: "Please enter your project installation requirements",
       name: "ProjectInstall",
     },
@@ -89,7 +84,14 @@ async function generateReadMe() {
     \n\n## Description 
     \n${description}
     \n\n## Table of Contents
-    \n${tableContents}
+    \n*[Description](#description)
+    \n*[Installation](#installation)
+    \n*[Usage](#usage)
+    \n*[Tests](#tests)
+    \n*[Contribution](#contribution)
+    \n*[License](#badgeURL)
+    \n*[Author](#name)
+    \n*[Contact](#contact)
     \n\n## Installation
     \n${installation}
     \n\n## Usage
