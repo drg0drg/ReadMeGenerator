@@ -1,28 +1,30 @@
-## hh fghbdh 
+## DailyPlanner
 
 # Description 
-dhbgdf h
+A small app
 
 # Table of Contents
-fghdfghb
+-
 
 # License
-fghdfghb
+https://img.shields.io/github/license/drg0drg/DailyPlanner
 
 # Tests
-fgbhfgh 
+-
 
 # Contribution
-fghfgh 
+-
 
 # Installation
-fgbhf 
+-
 
 # Usage
-fhbhfgh 
+-
 
- #Author
-drg
+# Author
+Name: dragos
+GitHub: drg0drg
+https://avatars1.githubusercontent.com/u/60710786?v=4
 
 # Contact
-drg
+dragomir_costin_dragos@yahoo.com

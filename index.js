@@ -7,6 +7,9 @@ const writeFileAsync = util.promisify(fs.writeFile);
 
 async function generateReadMe() {
   try {
+    //-----------------------------------------
+    //------------Questions Section------------
+    //-----------------------------------------
     const userInput = await inquirer.prompt([
       {
         type: "input",
@@ -64,18 +67,25 @@ async function generateReadMe() {
         name: "ProjectContact",
       },
     ]);
-
-    console.log(userInput);
-
+    // console.log(userInput);
+    //--------------------------------------------
+    //--------------API Section-------------------
+    //--------------------------------------------
     // Creating the link for the API call
     const queryUrl = `https://api.github.com/users/${userInput.userName}`;
-        
     const { data } = await axios.get(queryUrl);
     console.log(data);
-    
-
-    const readMeText = `## ${userInput.projectTitle}\n\n# Description \n${userInput.projectDescription}\n\n# Table of Contents\n${userInput.ProjectContents}\n\n# License\n${userInput.ProjectContents}\n\n# Tests\n${userInput.ProjectTest}\n\n# Contribution\n${userInput.ProjectContributing}\n\n# Installation\n${userInput.ProjectInstall}\n\n# Usage\n${userInput.ProjectUse}\n\n #Author\n${userInput.name}\n\n# Contact\n${userInput.name}`;
+    //--------------------------------------
+    //--------Bagde Section-----------------
+    //--------------------------------------
+    //Adding the badge. The link should have github username "/" name of the repo added at the end
+    const badgeURL = `https://img.shields.io/github/license/${userInput.userName}/${userInput.projectRepo}`
+    //------------------------------------------------
+    //-----------ReadMe Contents Section--------------
+    //------------------------------------------------
+    const readMeText = `## ${userInput.projectTitle}\n\n# Description \n${userInput.projectDescription}\n\n# Table of Contents\n${userInput.ProjectContents}\n\n# License\n${badgeURL}\n\n# Tests\n${userInput.ProjectTest}\n\n# Contribution\n${userInput.ProjectContributing}\n\n# Installation\n${userInput.ProjectInstall}\n\n# Usage\n${userInput.ProjectUse}\n\n# Author\nName: ${userInput.name}\nGitHub: ${userInput.userName}\n${data.avatar_url}\n\n# Contact\n${userInput.ProjectContact}`;
     writeFileAsync("MYreadme.md", readMeText);
+
   } catch (error) {
     console.log(error);
   }
