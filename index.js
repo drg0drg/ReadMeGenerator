@@ -1,6 +1,7 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 const util = require("util");
+const axios = require("axios");
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
@@ -65,6 +66,13 @@ async function generateReadMe() {
     ]);
 
     console.log(userInput);
+
+    // Creating the link for the API call
+    const queryUrl = `https://api.github.com/users/${userInput.userName}`;
+        
+    const { data } = await axios.get(queryUrl);
+    console.log(data);
+    
 
     const readMeText = `## ${userInput.projectTitle}\n\n# Description \n${userInput.projectDescription}\n\n# Table of Contents\n${userInput.ProjectContents}\n\n# License\n${userInput.ProjectContents}\n\n# Tests\n${userInput.ProjectTest}\n\n# Contribution\n${userInput.ProjectContributing}\n\n# Installation\n${userInput.ProjectInstall}\n\n# Usage\n${userInput.ProjectUse}\n\n #Author\n${userInput.name}\n\n# Contact\n${userInput.name}`;
     writeFileAsync("MYreadme.md", readMeText);
