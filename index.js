@@ -76,16 +76,36 @@ async function generateReadMe() {
     const title = userInput.projectTitle;
     const description = userInput.projectDescription;
     const tableContents = userInput.ProjectContents;
-    const tests = userInput.ProjectTest;
-    const contribution = userInput.ProjectContributing;
     const installation = userInput.ProjectInstall;
     const usage = userInput.ProjectUse;
+    const tests = userInput.ProjectTest;
+    const contribution = userInput.ProjectContributing;
     const name = userInput.name;
     const github = userInput.userName;
     const avatar = data.avatar_url;
     const contact = userInput.ProjectContact;
 
-    const readMeText = `# ${title}\n\n## Description \n${description}\n\n## Table of Contents\n${tableContents}\n\n## License\n![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)\n\n${badgeURL}\n\n## Tests\n${tests}\n\n## Contribution\n${contribution}\n\n## Installation\n${installation}\n\n## Usage\n${usage}\n\n## Author\n\n Name: ${name}\n\n GitHub: ${github}\n\n ![Alt Text](${avatar})\n\n## Contact\n${contact}`;
+    const readMeText = `# ${title}
+    \n\n## Description 
+    \n${description}
+    \n\n## Table of Contents
+    \n${tableContents}
+    \n\n## Installation
+    \n${installation}
+    \n\n## Usage
+    \n${usage}
+    \n\n## Tests
+    \n${tests}
+    \n\n## Contribution
+    \n${contribution}
+    \n\n## License\n![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+    \n\n${badgeURL}
+    \n\n## Author
+    \n\n Name: ${name}
+    \n\n GitHub: ${github}
+    \n\n ![Alt Text](${avatar})
+    \n\n## Contact\n${contact}`;
+
     writeFileAsync("MyReadMe.md", readMeText);
     
   } catch (error) {
