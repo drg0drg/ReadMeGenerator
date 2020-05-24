@@ -45,6 +45,11 @@ After setup, run terminal command _node index.js_;
 Provide required information to build _MyReadMe.md_ file. 
 
 Transfer the content to your project's README.md file and save. 
+
+Demo: 
+
+![ReadMeGenerator](https://user-images.githubusercontent.com/60710786/82763652-27e9a180-9e01-11ea-856d-13e73109ed82.gif)
+
     
 
 ## Tests
