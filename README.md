@@ -12,35 +12,35 @@ The contents can then be transferred to the specific projects README.md file hav
 
 ## Table of Contents
     
-*[Description](#description)
+[Description](#description)
     
-*[Installation](#installation)
+[Installation](#installation)
     
-*[Usage](#usage)
+[Usage](#usage)
     
-*[Tests](#tests)
+[Tests](#tests)
     
-*[Contribution](#contribution)
+[Contribution](#contribution)
     
-*[License](#badgeURL)
+[License](#badgeURL)
     
-*[Author](#name)
+[Author](#name)
     
-*[Contact](#contact)
+[Contact](#contact)
     
 
 ## Installation
     
 This Read Me Generator app uses Node.JS environment and _fs_, _inquirer_, _util_ and _axios_ dependencies.
 
-One has to install Node.JS by running the terminal command _npm install_ in the specific repository, followed by each dependency installation with _npm i fs_, _npm i inquirer_, _npm i util_, _npm i axios_ commands.
+One has to install Node.JS by running the terminal command `npm install` in the specific repository, followed by each dependency installation with `npm i fs`, `npm i inquirer`, `npm i util`, `npm i axios` commands.
     
 
 ## Usage
     
 Fork && clone the repo. 
 
-After setup, run terminal command _node index.js_;
+After setup, run terminal command `node index.js`;
 
 Provide required information to build _MyReadMe.md_ file. 
 
