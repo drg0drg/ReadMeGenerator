@@ -5,47 +5,69 @@ const axios = require("axios");
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
+const userInputOK = (input) => {
+  if (input === "") {
+    return "\nYou may have missed a field \nPlease provide all the required information" 
+  }
+  return true;
+};
+
 function promptQuestions() {
   return inquirer.prompt([
     {
       type: "input",
       message: "Please enter your name",
       name: "name",
+      validate: userInputOK,
     },
     {
       type: "input",
       message: "Please enter your GitHub username",
       name: "userName",
+      validate: userInputOK,
+
     },
     {
       type: "input",
       message: "Please enter your project title",
       name: "projectTitle",
+      validate: userInputOK,
+
     },
     {
       type: "input",
       message: "Please enter your project repo name on GitHub",
       name: "projectRepo",
+      validate: userInputOK,
+
     },
     {
       type: "input",
       message: "Please enter your project description",
       name: "projectDescription",
+      validate: userInputOK,
+
     },
     {
       type: "input",
       message: "Please enter your project installation requirements",
       name: "ProjectInstall",
+      validate: userInputOK,
+
     },
     {
       type: "input",
-      message: "Please enter your project can be used",
+      message: "Please enter how your project can be used",
       name: "ProjectUse",
+      validate: userInputOK,
+
     },
     {
       type: "input",
       message: "Please enter contributing info for your project",
       name: "ProjectContributing",
+      validate: userInputOK,
+
     },
     {
       type: "input",
@@ -56,6 +78,16 @@ function promptQuestions() {
       type: "input",
       message: "Please enter your contact for this project",
       name: "ProjectContact",
+      validate: function (email) {
+        valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+        if (valid) {
+          console.log("  valid email");
+          return true;
+        } else {
+          console.log("\n Please enter a valid email");
+          return false;
+        }
+      },
     },
   ]);
 }
@@ -66,50 +98,36 @@ async function generateReadMe() {
     const queryUrl = `https://api.github.com/users/${userInput.userName}`;
     const { data } = await axios.get(queryUrl);
     const badgeURL = `https://opensource.org/licenses/MIT`;
-    console.log(data);
-
-    const title = userInput.projectTitle;
-    const description = userInput.projectDescription;
-    const tableContents = userInput.ProjectContents;
-    const installation = userInput.ProjectInstall;
-    const usage = userInput.ProjectUse;
-    const tests = userInput.ProjectTest;
-    const contribution = userInput.ProjectContributing;
-    const name = userInput.name;
-    const github = userInput.userName;
-    const avatar = data.avatar_url;
-    const contact = userInput.ProjectContact;
-
-    const readMeText = `# ${title}
+    //Building the readme document content by passing in user's input
+    const readMeText = `# ${userInput.projectTitle}
     \n\n## Description 
-    \n${description}
+    \n${userInput.projectDescription}
     \n\n## Table of Contents
-    \n*[Description](#description)
-    \n*[Installation](#installation)
-    \n*[Usage](#usage)
-    \n*[Tests](#tests)
-    \n*[Contribution](#contribution)
-    \n*[License](#badgeURL)
-    \n*[Author](#name)
-    \n*[Contact](#contact)
+    \n[Description](#description)
+    \n[Installation](#installation)
+    \n[Usage](#usage)
+    \n[Tests](#tests)
+    \n[Contribution](#contribution)
+    \n[License](#badgeURL)
+    \n[Author](#name)
+    \n[Contact](#contact)
     \n\n## Installation
-    \n${installation}
+    \n${userInput.ProjectInstall}
     \n\n## Usage
-    \n${usage}
+    \n${userInput.ProjectUse}
     \n\n## Tests
-    \n${tests}
+    \n${userInput.ProjectTest}
     \n\n## Contribution
-    \n${contribution}
+    \n${userInput.ProjectContributing}
     \n\n## License\n![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
     \n\n${badgeURL}
     \n\n## Author
-    \n\n Name: ${name}
-    \n\n GitHub: ${github}
-    \n\n ![Alt Text](${avatar})
-    \n\n## Contact\n${contact}`;
+    \n\n Name: ${userInput.name}
+    \n\n GitHub: ${userInput.userName}
+    \n\n ![Alt Text](${data.avatar_url})
+    \n\n## Contact\n${userInput.ProjectContact}`;
 
     writeFileAsync("MyReadMe.md", readMeText);
-    
   } catch (error) {
     console.log(error);
   }
